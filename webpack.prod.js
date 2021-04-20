@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
     entry: './src/index.js',
@@ -7,6 +8,11 @@ module.exports = {
         filename: '[name].[contenthash].js'
     },
     mode: 'production',
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        port: 8081,
+        open: true,
+    },
     module: {
         rules: [
             {
@@ -38,7 +44,7 @@ module.exports = {
         }),
         new HtmlWebPackPlugin({
             template: './src/index.html',
-            filename: './index.[contenthash].html',
+            filename: './index.html',
         }),
     ]
 }
