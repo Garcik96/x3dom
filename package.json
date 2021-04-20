@@ -1,0 +1,24 @@
+{
+  "name": "x3dom",
+  "version": "1.0.0",
+  "description": "Proyecto creado por los estudiantes del grado en ingeniería informática, Iván García Ballesteros y Carlos Uncio Veyrat, para la asignatura de programación multimedia",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.prod.js",
+    "build:dev": "webpack --config webpack.config.js",
+    "start": "webpack-dev-server --open --port=8081"
+  },
+  "author": "Iván García Ballesteros y Carlos Uncio Veyrat",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^5.2.4",
+    "mini-css-extract-plugin": "^1.5.0",
+    "webpack": "^5.34.0",
+    "webpack-cli": "^4.6.0"
+  },
+  "dependencies": {
+    "node-sass": "^5.0.0",
+    "sass-loader": "^11.0.1"
+  }
+}
