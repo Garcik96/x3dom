@@ -1,5 +1,139 @@
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/notched-outline/mdc-notched-outline";
+@use "@material/textfield";
+
 $light-background: #FFFFFF;
 $light-accent-background: #EAECEE;
 $light-accent-text: #263238;
 $light-text: #546E7A;
 $light-accent: #5850EC;
+$light-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072);
+$font: Roboto, "Helvetica Neue", sans-serif;
+
+body {
+    font-family: $font;
+}
+
+// ------------------ CARTAS ------------------
+.card {
+    background: $light-accent-background !important;
+    box-shadow: $light-shadow;
+}
+
+.card-title {
+    color: $light-accent;
+}
+
+// ------------------ BOTONES -----------------
+.mdc-button {
+    font-family: $font;
+}
+
+.mdc-button--raised:not(:disabled) {
+    background-color: $light-accent;
+}
+
+.text-right {
+    text-align: right;
+}
+
+// --------------- RADIO BUTTONS ---------------
+.form-check-input:checked {
+    background-color: $light-accent;
+    border-color: $light-accent;
+}
+
+.form-check-input:checked[type=radio] {
+    background-image: none;
+}
+
+.form-check-input:focus {
+    border-color: $light-accent;
+    outline: 0;
+    box-shadow: none;
+}
+
+// ------------------ INPUTS -------------------
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: $light-background;
+}
+
+.mdc-text-field--filled .mdc-line-ripple::after {
+    border-bottom-color: $light-accent;
+}
+
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: $light-accent;
+}
+
+.mdc-text-field .mdc-text-field__input {
+    caret-color: $light-accent;
+}
+
+.padding-right-10 {
+    padding-right: 10px;
+}
+
+.padding-right-5 {
+    padding-right: 5px;
+}
+
+.padding-left-10 {
+    padding-left: 10px;
+}
+
+.padding-left-5 {
+    padding-left: 5px;
+}
+
+input[type="color"] {
+    cursor: pointer;
+    -webkit-appearance: none;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    width: 50px;
+    height: 30px;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 5px;
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    border: none;
+    border-radius: 5px;
+    padding: 0;
+}
+
+input[type="color"]:focus {
+    outline: none;
+}
+
+// ------------------ LABELS -------------------
+.label-style {
+    color: $light-accent;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+// ------------------- DIVS --------------------
+.section-color {
+    display: flex;
+    align-items: center;
+}
+
+// ------------------- X3D ---------------------
+.x3d {
+    height: 1080px;
+    width: 100%;
+    box-shadow: $light-shadow;
+    background-color: $light-accent-background;
+}

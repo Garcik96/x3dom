@@ -3,12 +3,16 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const Path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin }  = require('clean-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: '[name].js',
+        filename: '[name].[contenthash].js',
         path: Path.resolve(__dirname, 'dist'),
+    },
+    optimization: {
+        minimizer: [ new OptimizeCssAssetsPlugin() ]
     },
     mode: 'development',
     devServer: {
@@ -32,7 +36,19 @@ module.exports = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
-                    'sass-loader'
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sassOptions: {
+                              includePaths: ['./node_modules']
+                            },
+                            // Prefer Dart Sass
+                            implementation: require('node-sass'),
+                        
+                            // See https://github.com/webpack-contrib/sass-loader/issues/804
+                            webpackImporter: false,
+                          }
+                    },
                 ]
             },
             {
@@ -40,7 +56,7 @@ module.exports = {
                 loader: 'html-loader',
             },
             {
-                test: /\.(png|svg|jpg|gif)$/,
+                test: /\.(png|svg|jpg|gif|x3d)$/,
                 use: [
                     {
                         loader: 'file-loader',
@@ -55,7 +71,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'styles.css'
+            filename: 'styles.[contenthash].css'
         }),
         new HtmlWebPackPlugin({
             template: './src/index.html',
