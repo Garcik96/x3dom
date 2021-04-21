@@ -83,7 +83,7 @@ module.exports = {
         }),
         new HtmlWebPackPlugin({
             template: './src/index.html',
-            filename: './index.[contenthash].html',
+            filename: './index.html',
         }),
         new CopyPlugin({
             patterns: [

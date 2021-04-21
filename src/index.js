@@ -1,7 +1,9 @@
 import './styles.scss';
 import {MDCTextField} from '@material/textfield';
 
-(() => {
+const figura = (() => {
+    let idFigura = 0;
+
     const btnInsertar = document.querySelector('#btnInsertar'),
           btnEditar = document.querySelector('#btnEditar');
 
@@ -26,15 +28,15 @@ import {MDCTextField} from '@material/textfield';
           inputPosicionY = new MDCTextField(document.querySelector('#inputPosicionY')),
           inputPosicionZ = new MDCTextField(document.querySelector('#inputPosicionZ'));
 
-    const inputTrasladarX = new MDCTextField(document.querySelector('#inputTrasladarX')),
-          inputTrasladarY = new MDCTextField(document.querySelector('#inputTrasladarY')),
-          inputTrasladarZ = new MDCTextField(document.querySelector('#inputTrasladarZ'));
+    const inputTrasladarX = new MDCTextField(document.querySelector('#TrasladarX')),
+          inputTrasladarY = new MDCTextField(document.querySelector('#TrasladarY')),
+          inputTrasladarZ = new MDCTextField(document.querySelector('#TrasladarZ'));
 
-    const inputEscalarX = new MDCTextField(document.querySelector('#inputEscalarX')),
-          inputEscalarY = new MDCTextField(document.querySelector('#inputEscalarY')),
-          inputEscalarZ = new MDCTextField(document.querySelector('#inputEscalarZ'));
+    const inputEscalarX = new MDCTextField(document.querySelector('#EscalarX')),
+          inputEscalarY = new MDCTextField(document.querySelector('#EscalarY')),
+          inputEscalarZ = new MDCTextField(document.querySelector('#EscalarZ'));
 
-    const x3dScene = document.querySelector('#x3dScene');
+    const x3dScene = document.querySelector('#x3dGroup');
 
     btnInsertar.addEventListener('click', () => {
         if(radioButtonCubo.checked) {
@@ -53,35 +55,18 @@ import {MDCTextField} from '@material/textfield';
     })
 
     const crearCubo = (lado = 0, color, posicionX, posicionY, posicionZ) => {
-        const rojo = parseInt('0x' + color.slice(1,3)) / 255;
-        const verde = parseInt('0x' + color.slice(3,5)) / 255;
-        const azul = parseInt('0x' + color.slice(5,7)) / 255;
-        x3dScene.insertAdjacentHTML('beforeend',`<transform translation=\'${posicionX} ${posicionY} ${posicionZ}\'><shape><appearance><material diffuseColor=\'${rojo} ${verde} ${azul}\'></material></appearance><box size=\'${lado},${lado},${lado}\'></box></shape></transform>`);
+        x3dScene.insertAdjacentHTML('beforeend',`<transform translation=\'${posicionX} ${posicionY} ${posicionZ}\'><shape onclick=\'seleccionarFigura(event);\'><appearance><material diffuseColor=\'${color}\'></material></appearance><box size=\'${lado},${lado},${lado}\'></box></shape></transform>`);
     }
 
     const crearEsfera = (radio = 0, color, posicionX, posicionY, posicionZ) => {
-        const rojo = parseInt('0x' + color.slice(1,3)) / 255;
-        const verde = parseInt('0x' + color.slice(3,5)) / 255;
-        const azul = parseInt('0x' + color.slice(5,7)) / 255;
-        console.log(radio);
-        x3dScene.insertAdjacentHTML('beforeend',`<transform translation=\'${posicionX} ${posicionY} ${posicionZ}\'><shape><appearance><material diffuseColor=\'${rojo} ${verde} ${azul}\'></material></appearance><sphere radius=\'${radio}\'></sphere></shape></transform>`);
+        x3dScene.insertAdjacentHTML('beforeend',`<transform translation=\'${posicionX} ${posicionY} ${posicionZ}\'><shape onclick=\'seleccionarFigura(event);\'><appearance><material diffuseColor=\'${color}\'></material></appearance><sphere radius=\'${radio}\'></sphere></shape></transform>`);
     }
 
     const crearCono = (radio = 0, altura = 0, color, posicionX, posicionY, posicionZ) => {
-        const rojo = parseInt('0x' + color.slice(1,3)) / 255;
-        const verde = parseInt('0x' + color.slice(3,5)) / 255;
-        const azul = parseInt('0x' + color.slice(5,7)) / 255;
-        x3dScene.insertAdjacentHTML('beforeend',`<transform translation=\'${posicionX} ${posicionY} ${posicionZ}\'><shape><appearance><material diffuseColor=\'${rojo} ${verde} ${azul}\'></material></appearance><cone bottomRadius=\'${radio}\' height=\'${altura}\'></cone></shape></transform>`);
+        x3dScene.insertAdjacentHTML('beforeend',`<transform translation=\'${posicionX} ${posicionY} ${posicionZ}\'><shape onclick=\'seleccionarFigura(event);\'><appearance><material diffuseColor=\'${color}\'></material></appearance><cone bottomRadius=\'${radio}\' height=\'${altura}\'></cone></shape></transform>`);
     }
 
     const crearToro = (radioInterior = 0, radioExterior = 0, color, posicionX, posicionY, posicionZ) => {
-        const rojo = parseInt('0x' + color.slice(1,3)) / 255;
-        const verde = parseInt('0x' + color.slice(3,5)) / 255;
-        const azul = parseInt('0x' + color.slice(5,7)) / 255;
-        x3dScene.insertAdjacentHTML('beforeend',`<transform translation=\'${posicionX} ${posicionY} ${posicionZ}\'><shape><appearance><material diffuseColor=\'${rojo} ${verde} ${azul}\'></material></appearance><torus innerRadius=\'${radioInterior}\' outerRadius=\'${radioExterior}\'></torus></shape></transform>`);
-    }
-
-    const editarFigura = (color, trasladarX, trasladarY, trasladarZ, escalarX, escalarY, escalarZ) => {
-
+        x3dScene.insertAdjacentHTML('beforeend',`<transform translation=\'${posicionX} ${posicionY} ${posicionZ}\'><shape onclick=\'seleccionarFigura(event);\'><appearance><material diffuseColor=\'${color}\'></material></appearance><torus innerRadius=\'${radioInterior}\' outerRadius=\'${radioExterior}\'></torus></shape></transform>`);
     }
 })()
