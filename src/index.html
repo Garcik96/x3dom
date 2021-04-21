@@ -257,9 +257,14 @@
                                           inputEscalarY = document.querySelector('#inputEscalarY'),
                                           inputEscalarZ = document.querySelector('#inputEscalarZ');
 
-                                    figuraSeleccionada.children[0].children[0].setAttribute('diffuseColor', inputColorEditar.value);
-                                    figuraSeleccionada.parentNode.setAttribute('translation', inputTrasladarX.value + ' ' + inputTrasladarY.value + ' ' + inputTrasladarZ.value);
-	                                figuraSeleccionada.parentNode.setAttribute('scale', inputEscalarX.value + ' ' + inputEscalarY.value + ' ' + inputEscalarZ.value);
+                                    if(figuraSeleccionada !== null) {
+                                        figuraSeleccionada.children[0].children[0].setAttribute('diffuseColor', inputColorEditar.value);
+                                        figuraSeleccionada.parentNode.setAttribute('translation', inputTrasladarX.value + ' ' + inputTrasladarY.value + ' ' + inputTrasladarZ.value);
+                                        figuraSeleccionada.parentNode.setAttribute('scale', inputEscalarX.value + ' ' + inputEscalarY.value + ' ' + inputEscalarZ.value);
+
+                                        figuraSeleccionada.children[0].children[0].setAttribute('transparency', '0.0');
+                                        figuraSeleccionada = null;
+                                    }
                                 }
                             </script>
                         </scene>
